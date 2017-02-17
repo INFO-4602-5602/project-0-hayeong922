@@ -1,4 +1,4 @@
-# InfoVis_project0
+# Information Visualization Project0
 
 
 Collaborators:
@@ -156,6 +156,30 @@ Pieces referred:
 	//After getting the parameters(slope and y intercept of the fitted line), we can draw the line based on the intercept point and the point with maximum x value.
 
 
-5.Part 2: Building Bars, Part 3: Building Scatterplots, part 4: interaction part and Bell:tooltips were implemented by using the code taught in class (tutorial code). To be more specific, we reused some of the code and made changes according to certain tasks. 
+5.Selecting elements of multiple bar charts at the same time on Google groups
+
+(https://groups.google.com/forum/#!topic/d3-js/cYnedmP54f0)
+
+Used to highlight the related pair of bars at the same time which is task Whistle: Coordinated Views.
+
+Pieces referred:
+
+	var bar1 = svg.selectAll(".bar1")  //we select the related bar DOM based on the same class.
+		.data(data).enter()
+	 	.append("rect")
+	 	.attr("class", function (d, i) { return 'bar' + i; })
+          
+	var bar2 = svg.selectAll(".bar2")
+		.data(data).enter()
+	 	.append("rect")
+	 	.attr("class", function (d, i) { return 'bar' + i; })
+
+	d3.selectAll('rect').on('mouseover', function() {
+    	var rectClass = d3.select(this).attr('class');
+   
+    	d3.selectAll('.' + rectClass)    //controling the bars based on class will be effective
+        	.attr('opacity', 0.2);
+
+6.Part 2: Building Bars, Part 3: Building Scatterplots, part 4: interaction part and Bell:tooltips were implemented by using the code taught in class (tutorial code). To be more specific, we reused some of the code and made changes according to certain tasks. 
 	
 
