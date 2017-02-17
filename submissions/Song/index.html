@@ -262,8 +262,8 @@
 
     d3.csv('./data/anscombe_I.csv', function(csvData) {
         var w = 700; // Width of our visualization
-        var h_ = 500; // Height of our visualization
-        var xOffset_ = 50; // Space for x-axis labels
+        var h = 500; // Height of our visualization
+        var xOffset = 50; // Space for x-axis labels
         var yOffset = 80; // Space for y-axis labels
         var margin = 10; // Margin around visualization
         var vals = ['x', 'y']; // List of data attributes
@@ -278,7 +278,7 @@
             })-1, d3.max(data, function(d) {
                 return parseFloat(d[xVal]);
             })+1])
-            .range([xOffset_ + margin, w - margin]);
+            .range([xOffset + margin, w - margin]);
 
         var yScale = d3.scale.linear()
             .domain([d3.min(data, function(d) {
@@ -286,12 +286,12 @@
             })-1, d3.max(data, function(d) {
                 return parseFloat(d[yVal]);
             })+1])
-            .range([h_ - yOffset - margin, margin]);
+            .range([h - yOffset - margin, margin]);
 
         // Next, we will create an SVG element to contain our visualization.
         var svg = d3.select("#partThree").append("svg:svg")
             .attr("width", w)
-            .attr("height", h_);
+            .attr("height", h);
 
 
         // Build axes! (These are kind of annoying, actually...)
@@ -304,14 +304,14 @@
         // Add a graphics element to hold the axis we created above (xAxis)
         var xAxisG = svg.append('g')
             .attr('class', 'xaxis')
-            .attr('transform', 'translate(0, ' + (h_- yOffset - margin) + ')')
+            .attr('transform', 'translate(0, ' + (h - yOffset - margin) + ')')
             .call(xAxis);
 
         // Add a label that shows the user what that axis represents
         var xLabel = svg.append("text")
             .attr('class', 'label')
-            .attr('x', (w-xOffset_)/2+xOffset_+margin)
-            .attr('y', h_ - margin*5)
+            .attr('x', (w-xOffset)/2+xOffset+margin)
+            .attr('y', h - margin*5)
             .text(xVal);
 
         // Repeat for the y-axis
@@ -322,13 +322,13 @@
 
         var yAxisG = svg.append('g')
             .attr('class', 'yaxis')
-            .attr('transform', 'translate(' + (xOffset_+margin) + ', 0)')
+            .attr('transform', 'translate(' + (xOffset+margin) + ', 0)')
             .call(yAxis);
 
         var yLabel = svg.append("text")
             .attr('class', 'label')
-            .attr('x', xOffset_/2)
-            .attr('y', (h_-yOffset-margin)/2)
+            .attr('x', xOffset/2)
+            .attr('y', (h-yOffset-margin)/2)
             .text(yVal);
 
         // scatterplot!
@@ -362,8 +362,8 @@
             var spotLabel = svg.append("text")
                 .attr('class', 'label')
                 .attr("id","myText")
-                .attr('x', xOffset_/2 +300)
-                .attr('y', h_/2 - 200)
+                .attr('x', xOffset/2 +300)
+                .attr('y', h/2 - 200)
                 .transition()
                 .duration(150)
                 .text("coordinates "+d.x+" , "+d.y);
